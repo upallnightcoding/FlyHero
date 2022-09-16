@@ -33,7 +33,7 @@ public class Road : MonoBehaviour
             GameObject go = Instantiate(road);
 
             float x = 0.0f;
-            float y = 2.15f;
+            float y = 1.0f;
             float z = lastPosition;
             go.transform.position = new Vector3(x, y, z);
 
