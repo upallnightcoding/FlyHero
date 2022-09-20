@@ -36,7 +36,6 @@ public class Controller : MonoBehaviour
     {
         float hortAxis = Input.GetAxisRaw("Horizontal");
         float vertAxis = Input.GetAxisRaw("Vertical");
-        Debug.Log($"Hort: {hortAxis} / Vert: {vertAxis}");
 
         charCntrl.Move(transform.forward * flySpeed * Time.deltaTime);
 
@@ -65,7 +64,6 @@ public class Controller : MonoBehaviour
     {
         float hortAxis = Input.GetAxis("Horizontal");
         float vertAxis = Input.GetAxis("Vertical");
-        Debug.Log($"Hort: {hortAxis} / Vert: {vertAxis}");
 
         charCntrl.Move(transform.forward * flySpeed * Time.deltaTime);
 
