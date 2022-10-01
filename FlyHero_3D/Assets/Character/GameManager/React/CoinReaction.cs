@@ -4,27 +4,32 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class CoinReact : React
+public class CoinReaction : Reaction
 {
     [SerializeField] private TMP_Text score;
 
-    public CoinReact() : base(ReactType.BLANK_COIN)
+    public CoinReaction() : base(ReactType.BLANK_COIN)
     {
 
     }
 
     public override void Animation()
     {
-        Debug.Log("Coin React Animation");
+        Debug.Log("Coin Reaction Animation");
     }
 
     public override void Audio()
     {
-        Debug.Log("Coin React Audio");
+        Debug.Log("Coin Reaction Audio");
     }
 
     public override void UIUpdate()
     {
-        Debug.Log("Coin React UIUpdate");
+        Debug.Log("Coin Reaction UIUpdate");
+    }
+
+    public override void UpdateGameObject()
+    {
+        Destroy(gameObject);
     }
 }

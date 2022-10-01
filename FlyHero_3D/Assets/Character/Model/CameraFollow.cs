@@ -16,6 +16,13 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
+        transform.position = player.TransformPoint(offset);
+
+        transform.LookAt(player);
+    }
+
+    private void xLateUpdate()
+    {
         Vector3 desiredPos = player.TransformPoint(offset);
 
         Vector3 smoothPos = Vector3.Slerp(

@@ -6,15 +6,22 @@ using UnityEngine.UIElements;
 
 public class PgView : GraphView
 {
+    private StartPgNode startPgNode = null;
+
     public PgView()
     {
+        styleSheets.Add(Resources.Load<StyleSheet>("PgStyleSheet"));
+
         SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        AddElement(new StartPgNode());
+        SetupBackGround();
+
+        startPgNode = new StartPgNode();
+        AddElement(startPgNode);
 
         this.StretchToParentSize();
     }
@@ -22,6 +29,19 @@ public class PgView : GraphView
     public void CreateOrPgNode() => AddElement(new OrPgNode());
     public void CreatePreFabPgNode() => AddElement(new PreFabPgNode());
     public void CreateUnionPgNode() => AddElement(new UnionPgNode());
+
+    public void TestNodeTraverse()
+    {
+        TestNodeTraverse(startPgNode);
+    }
+
+    public void TestNodeTraverse(PgNode node)
+    {
+        foreach (VisualElement element in node.ListOutputPorts())
+        {
+            TestNodeTraverse(element as PgNode);
+        }
+    }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
@@ -37,5 +57,10 @@ public class PgView : GraphView
         return compatiblePorts;
     }
 
-
+    private void SetupBackGround()
+    {
+        var grid = new GridBackground();
+        Insert(0, grid);
+        grid.StretchToParentSize();
+    }
 }

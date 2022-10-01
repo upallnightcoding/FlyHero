@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using System;
+using UnityEngine.UIElements;
 
 public class PgNode : Node
 {
@@ -25,6 +26,17 @@ public class PgNode : Node
     public void CreateMultiPort(string portName, Direction direction)
     {
         CreatePort(portName, direction, Port.Capacity.Multi);
+    }
+
+    public List<VisualElement> ListOutputPorts()
+    {
+        string nameOfContainer = (outputContainer.name == null) ? "NULL" : outputContainer.name;
+
+        Debug.Log($"Name of Container: {nameOfContainer}");
+
+        List<VisualElement> list = outputContainer.Query("connector").ToList();
+
+        return (list);
     }
 
     private void CreatePort(string portName, Direction direction, Port.Capacity capacity)

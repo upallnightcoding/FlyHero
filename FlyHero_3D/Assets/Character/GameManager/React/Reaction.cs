@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class React : MonoBehaviour
+public abstract class Reaction : MonoBehaviour
 {
     public ReactType Type { set; get; } = ReactType.UNKNOWN;
 
-    public React(ReactType type)
+    public Reaction(ReactType type)
     {
         Type = type;
     }
@@ -16,15 +16,11 @@ public abstract class React : MonoBehaviour
         Audio();
         Animation();
         UIUpdate();
+        UpdateGameObject();
     }
 
+    public abstract void UpdateGameObject();
     public abstract void Audio();
     public abstract void UIUpdate();
     public abstract void Animation();
-}
-
-public enum ReactType
-{
-    UNKNOWN,
-    BLANK_COIN
 }

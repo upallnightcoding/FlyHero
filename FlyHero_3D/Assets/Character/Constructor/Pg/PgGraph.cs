@@ -43,6 +43,8 @@ public class PgGraph : EditorWindow
     {
         var toolBar = new Toolbar();
 
+        toolBar.Add(new Button(() => TestNodeTraverse()) { text = "Test" });
+
         toolBar.Add(new Label("Create Nodes -> "));
 
         toolBar.Add(new Button(() => CreateOrNode()) { text = "Or" });
@@ -55,4 +57,6 @@ public class PgGraph : EditorWindow
     private void CreatePreFabNode() => graphView.CreatePreFabPgNode();
     private void CreateOrNode() => graphView.CreateOrPgNode();
     private void CreateUnionNode() => graphView.CreateUnionPgNode();
+
+    private void TestNodeTraverse() => graphView.TestNodeTraverse();
 }
