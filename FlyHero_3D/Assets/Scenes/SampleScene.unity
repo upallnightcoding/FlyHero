@@ -153,12 +153,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f756660ad6efd14a98c22e70f67a7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameCache: {fileID: 11400000, guid: c9ea96d71b000de4b89521f4be5114b2, type: 2}
   charCntrl: {fileID: 62578199}
-  flySpeed: 40
-  laneSwitchSpeed: 150
-  horzSpeed: 750
-  vertSpeed: 750
-  yawAmount: 100
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &62578197
 Transform:
   m_ObjectHideFlags: 0
@@ -614,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
       propertyPath: m_LocalPosition.y
@@ -859,10 +888,6 @@ PrefabInstance:
     - target: {fileID: 5123918424604056099, guid: 609f6a43376a2884facf471ac8f85ed5, type: 3}
       propertyPath: m_Name
       value: Road
-      objectReference: {fileID: 0}
-    - target: {fileID: 5123918424604056099, guid: 609f6a43376a2884facf471ac8f85ed5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6268174072271321669, guid: 609f6a43376a2884facf471ac8f85ed5, type: 3}
       propertyPath: m_RootOrder

@@ -16,9 +16,11 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = player.TransformPoint(offset);
+        //transform.position = player.TransformPoint(offset);
 
-        transform.LookAt(player);
+        //transform.LookAt(player);
+
+        transform.position = offset + player.position;
     }
 
     private void xLateUpdate()
