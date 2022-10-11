@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Coin : MonoBehaviour
+public class Coin : MonoBehaviour, CollectableObject
 {
-    public void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Coin Trigger ...");
-    }
+    public static event Action<CoinType> OnCoinCollection = null;
+
+    public virtual CoinType GetCoinType() => CoinType.NONE;
+
+    public void Collect() => OnCoinCollection?.Invoke(GetCoinType());
 }

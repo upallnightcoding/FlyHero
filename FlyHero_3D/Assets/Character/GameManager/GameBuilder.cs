@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GameBuilder : MonoBehaviour
 {
+    [SerializeField] private GameCache gameCache;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject road;
     [SerializeField] private int nForwardDepth;
     [SerializeField] private int nRearDepth;
-    [SerializeField] private GameObject blankCoin;
+    [SerializeField] private GameObject goldCoin;
+    [SerializeField] private GameObject greenCoin;
 
     private float lastPosition;
     private float forwardDepth;
@@ -62,11 +64,11 @@ public class GameBuilder : MonoBehaviour
 
     private void CreateCoins(GameObject parent, float lastPosition)
     {
-        float x = Random.Range(-20.0f, 20.0f);
-        float y = Random.Range(0.0f, 15.0f);
-        float z = lastPosition;
+        Vector3 position = gameCache.GetLaneLevelPos(lastPosition);
 
-        GameObject go = Instantiate(blankCoin, new Vector3(x, y, z), Quaternion.identity, parent.transform);
+        GameObject coin = Random.Range(0, 9) == 0 ? greenCoin : goldCoin;
+
+        GameObject go = Instantiate(coin, position, Quaternion.identity, parent.transform);
 
         deleteQueue.Enqueue(go);
     }
