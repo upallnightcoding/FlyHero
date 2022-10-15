@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameCache
   m_EditorClassIdentifier: 
   laneSwitchSpeed: 100
-  flySpeed: 50
+  flySpeed: 75
   laneSpace: 10
   floatValue: 4
   laneAnimation: 0
@@ -55,6 +55,6 @@ MonoBehaviour:
   - 0
   - 10
   levelPosition:
-  - 0
-  - 10
-  - 20
+  - 4
+  - 14
+  - 24

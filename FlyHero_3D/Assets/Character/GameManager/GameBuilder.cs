@@ -11,6 +11,9 @@ public class GameBuilder : MonoBehaviour
     [SerializeField] private int nRearDepth;
     [SerializeField] private GameObject goldCoin;
     [SerializeField] private GameObject greenCoin;
+    [SerializeField] private GameObject redCoin;
+    [SerializeField] private GameObject whiteCoin;
+    [SerializeField] private GameObject blueCoin;
 
     private float lastPosition;
     private float forwardDepth;
@@ -66,7 +69,31 @@ public class GameBuilder : MonoBehaviour
     {
         Vector3 position = gameCache.GetLaneLevelPos(lastPosition);
 
-        GameObject coin = Random.Range(0, 9) == 0 ? greenCoin : goldCoin;
+        GameObject coin = null;
+
+        if (Random.Range(0, 9) == 0)
+        {
+            int whichCoin = Random.Range(0, 4);
+
+            switch (whichCoin)
+            {
+                case 0:
+                    coin = greenCoin;
+                    break;
+                case 1:
+                    coin = redCoin;
+                    break;
+                case 2:
+                    coin = whiteCoin;
+                    break;
+                case 3:
+                    coin = blueCoin;
+                    break;
+            }
+        } else
+        {
+            coin = goldCoin;
+        }
 
         GameObject go = Instantiate(coin, position, Quaternion.identity, parent.transform);
 

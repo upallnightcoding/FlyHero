@@ -5,12 +5,15 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [SerializeField] private GameCache gameCache;
-    [SerializeField] private CharacterController charCntrl;
+    [SerializeField] private GameObject leftGun;
+    [SerializeField] private GameObject rightGun;
+    [SerializeField] private GameObject bullet;
 
     private float flySpeed;
     private float laneSwitchSpeed;
     private bool laneAnimation;
     private AnimationCurve animationCurve;
+    private CharacterController charCntrl;
 
     //private float yawAmount = 90.0f;
 
@@ -44,6 +47,16 @@ public class Controller : MonoBehaviour
         ReadInput(inputAxis);
         Vector3 newPosition = UpdatePosition(inputAxis);
         UpdateLaneAnimation(newPosition);
+        FirerGuns(inputAxis);
+    }
+
+    private void FirerGuns(InputAxis inputAxis)
+    {
+        if (inputAxis.Firer)
+        {
+            GameObject leftBullet = Instantiate(bullet, leftGun.transform.position, leftGun.transform.rotation);
+            GameObject rightBullet = Instantiate(bullet, rightGun.transform.position, rightGun.transform.rotation);
+         }
     }
 
     private Vector3 UpdatePosition(InputAxis inputAxis)
@@ -98,6 +111,8 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) vertAxis = 1;
 
         inputAxis.Set(vertAxis, hortAxis);
+
+        inputAxis.Firer = Input.GetKeyDown(KeyCode.Space);
     }
 
     private int UpdateDirection(int direction, int slot)
@@ -118,6 +133,8 @@ public class Controller : MonoBehaviour
 
 public class InputAxis
 {
+    public bool Firer { get; set; }
+
     public int vertInput;
     public int hortInput;
 
