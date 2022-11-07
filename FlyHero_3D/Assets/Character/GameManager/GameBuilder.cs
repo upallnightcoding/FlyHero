@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameBuilder : MonoBehaviour
 {
     [SerializeField] private GameCache gameCache;
+    [SerializeField] private Environment environment;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject road;
+
+    [SerializeField] private GameObject centerRoad;
+    [SerializeField] private GameObject sidewalk;
+    [SerializeField] private GameObject benchPreFab;
+
     [SerializeField] private int nForwardDepth;
     [SerializeField] private int nRearDepth;
-    [SerializeField] private GameObject goldCoin;
-    [SerializeField] private GameObject greenCoin;
-    [SerializeField] private GameObject redCoin;
-    [SerializeField] private GameObject whiteCoin;
-    [SerializeField] private GameObject blueCoin;
 
     private float lastPosition;
     private float forwardDepth;
@@ -27,7 +27,7 @@ public class GameBuilder : MonoBehaviour
     {
         deleteQueue = new Queue<GameObject>();
 
-        roadSize = road.GetComponent<BoxCollider>().bounds.size.z;
+        roadSize = 5.0f;
 
         lastPosition = roadSize;
 
@@ -50,52 +50,89 @@ public class GameBuilder : MonoBehaviour
         }
     }
 
-    private GameObject CreateRoad(float lastPosition)
+    private GameObject CreateRoad(float position)
     {
-        GameObject go = Instantiate(road);
+        GameObject center   = CreateRoad(centerRoad, 0.0f, position);
+        GameObject left     = CreateRoad(centerRoad, -10.0f, position);
+        GameObject right    = CreateRoad(centerRoad, 10.0f, position);
 
-        float x = 0.0f;
-        float y = 0.0f;
-        float z = lastPosition;
+        GameObject leftSideWalk     = CreateSideWalk(sidewalk, -17.5f, position);
+        GameObject rightSideWalk    = CreateSideWalk(sidewalk, 17.5f, position);
 
-        go.transform.position = new Vector3(x, y, z);
+        GetStoreFront(-22.5f, position);
+        GetStoreFront(22.5f, position);
+
+        return(center);
+    }
+
+    private GameObject GetStoreFront(float x, float position) {
+        GameObject storeFront = environment.PickStoreFront();
+
+        GameObject go = Instantiate(storeFront, new Vector3(x, 0.0f, position), storeFront.transform.rotation);
 
         deleteQueue.Enqueue(go);
 
         return(go);
     }
 
+    private GameObject CreateSideWalk(GameObject sideWalkPreFab, float x, float position) {
+        Transform slot = null;
+        GameObject bench = null;
+        GameObject hedge = null;
+
+        GameObject sideWalk = Instantiate(sideWalkPreFab, new Vector3(x, 0.0f, position), Quaternion.identity);
+
+        int which = environment.GetRandom(4);
+
+        switch(which) {
+            case 0:
+                slot = sideWalk.transform.GetChild(1);
+                bench = Instantiate(environment.PickBench());
+                bench.transform.localPosition = slot.transform.position;
+                break;
+            case 1:
+                slot = sideWalk.transform.GetChild(2);
+                bench = Instantiate(environment.PickBench());
+                bench.transform.localPosition = slot.transform.position;
+                break;
+            case 2:
+                slot = sideWalk.transform.GetChild(2);
+                hedge = Instantiate(environment.PickHedges());
+                hedge.transform.localPosition = slot.transform.position;
+                break;
+            case 3:
+                slot = sideWalk.transform.GetChild(3);
+                hedge = Instantiate(environment.PickHedges());
+                hedge.transform.localPosition = slot.transform.position;
+                slot = sideWalk.transform.GetChild(4);
+                hedge = Instantiate(environment.PickHedges());
+                hedge.transform.localPosition = slot.transform.position;
+                break;
+        }
+
+        deleteQueue.Enqueue(sideWalk);
+
+        return(sideWalk);
+    }
+
+    private GameObject CreateRoad(GameObject preFab, float x, float z)
+    {
+        GameObject road = Instantiate(preFab, new Vector3(x, 0.0f, z), Quaternion.identity);
+
+        deleteQueue.Enqueue(road);
+
+        return(road);
+    }
+
     private void CreateCoins(GameObject parent, float lastPosition)
     {
         Vector3 position = gameCache.GetLaneLevelPos(lastPosition);
 
-        GameObject coin = null;
+        GameObject coin = 
+            (Random.Range(0, 9) == 0) ? environment.GetCoin() : environment.GetGoldCoin();
 
-        if (Random.Range(0, 9) == 0)
-        {
-            int whichCoin = Random.Range(0, 4);
-
-            switch (whichCoin)
-            {
-                case 0:
-                    coin = greenCoin;
-                    break;
-                case 1:
-                    coin = redCoin;
-                    break;
-                case 2:
-                    coin = whiteCoin;
-                    break;
-                case 3:
-                    coin = blueCoin;
-                    break;
-            }
-        } else
-        {
-            coin = goldCoin;
-        }
-
-        GameObject go = Instantiate(coin, position, Quaternion.identity, parent.transform);
+        GameObject go = 
+            Instantiate(coin, position, Quaternion.identity, parent.transform);
 
         deleteQueue.Enqueue(go);
     }

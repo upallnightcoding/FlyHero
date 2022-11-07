@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8cb4746ccf9e846977587effb5a0d8, type: 3}
+  m_Name: Environment
+  m_EditorClassIdentifier: 
+  benches:
+  - {fileID: 9131398386888477191, guid: 25a0911034061704ca1e4117151475d1, type: 3}
+  - {fileID: 9112571650876041719, guid: dd3d957daf3ba7b41ad4bcf3eeb301d8, type: 3}
+  storeFronts:
+  - {fileID: 8835435356474611922, guid: dcc4d9ed4c5b2c64bafdebd2b2b8b856, type: 3}
+  - {fileID: 2884282698505920882, guid: 6ede89c8bd9067e438019e24a5c3e646, type: 3}
+  - {fileID: 6009828926961574921, guid: b48515a6f4081224aa030f4e4d9103c5, type: 3}
+  - {fileID: 5682876879727044473, guid: 8cc183c3eea688b43993a8b8151a5ac1, type: 3}
+  - {fileID: 4328106754527428635, guid: 8b68efae7dab79248af7beb0fd684002, type: 3}
+  hedges:
+  - {fileID: 3111633722616666433, guid: c53d8b8bec2369f4d8039a586d817983, type: 3}
+  - {fileID: 1201197564786862252, guid: 26c9842dd275aa04289a2bf53fc0fd8b, type: 3}
+  - {fileID: 8400257685979848437, guid: af92fe19fd5fd254a9a743c1ef29c809, type: 3}
+  sidewalk: {fileID: 4119901363968152482, guid: befddcb361a13cc4b8897c7bdb98c78c, type: 3}
+  centerRoad: {fileID: 4095931387711889810, guid: 49bc192694248184397e716f03d33230, type: 3}
+  goldCoin: {fileID: 8615262311914605178, guid: d2f51501bc99cc442b4942e1acdef9b2, type: 3}
+  greenCoin: {fileID: 8615262311914605178, guid: 66f9677709d354c438ee40dfcbbd95d5, type: 3}
+  redCoin: {fileID: 8615262311914605178, guid: d8711707b3a7a814389dcfa73e4b189e, type: 3}
+  whiteCoin: {fileID: 8615262311914605178, guid: ac42b455a99c52a46a4313cc8dd14cbb, type: 3}
+  blueCoin: {fileID: 8615262311914605178, guid: 83c7539e1851fd0448ff3837e6552d85, type: 3}
