@@ -5,13 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FlyHero/Environment", fileName = "PointsSystem")]
 public class Environment : ScriptableObject
 {
-    [Header("Benches")]
     public GameObject[] benches;
 
-    [Header("Store Fronts")]
+    public GameObject[] plants;
+
     public GameObject[] storeFronts;
 
-    [Header("Hedges")]
     public GameObject[] hedges;
 
     public GameObject sidewalk;
@@ -49,6 +48,10 @@ public class Environment : ScriptableObject
         }
 
         return(coin);
+    }
+
+    public GameObject PickPlants() {
+        return(plants[GetRandom(plants.Length)]);
     }
 
     public GameObject PickHedges() {
